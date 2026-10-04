@@ -35,9 +35,10 @@ les opérations en cascade et la suppression orpheline (`orphanRemoval`).
 ### Tables générées par Hibernate
 ![Table equipements](screenshots/31.png)
 ![Tables reservations et salle_equipement](screenshots/32.png)
+![Tables reservations et salle_equipement](screenshots/33.png)
 
 ### Clés étrangères
-![Clés étrangères](screenshots/33.png)
+![Clés étrangères](screenshots/34.png)
 
 ## Concepts testés
 
@@ -47,26 +48,25 @@ les opérations sur l'utilisateur sont propagées à ses réservations.
 Persister l'utilisateur et la salle suffit à enregistrer la réservation.
 Après `em.clear()`, l'utilisateur et la salle ont chacun 1 réservation.
 
-![Insertions en cascade](screenshots/34.png)
-![Utilisateur](screenshots/35.png)
-![Salle](screenshots/36.png)
+![Insertions en cascade](screenshots/35.png)
+![Utilisateur](screenshots/36.png)
+![Salle](screenshots/37.png)
 
 ### 2. Suppression orpheline (orphanRemoval)
 Avec `orphanRemoval = true`, une réservation retirée de la liste de son
 utilisateur est supprimée de la base. L'utilisateur passe de 2 à 1 réservation
 et Hibernate exécute un `delete from reservations`.
 
-![Orphelin - delete](screenshots/37.png)
-![Orphelin - résultat](screenshots/38t.png)
+![Orphelin - delete](screenshots/38.png)
+![Orphelin - résultat](screenshots/39.png)
 
 ### 3. Relation ManyToMany
 Le projecteur est associé à deux salles. Retirer un équipement d'une salle
 supprime seulement la ligne dans `salle_equipement` : l'équipement existe
 toujours dans la table `equipements`.
 
-![ManyToMany - insertions](screenshots/39.png)
-![ManyToMany - résultat](screenshots/40.png)
-![Équipement conservé](screenshots/41.png)
+![ManyToMany - insertions](screenshots/40.png)
+![ManyToMany - résultat](screenshots/41.png)
 
 ### 4. Méthodes utilitaires
 `addReservation`, `removeReservation`, `addEquipement` et `removeEquipement`
